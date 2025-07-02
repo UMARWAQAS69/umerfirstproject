@@ -1,38 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Games</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games - Umar's Website</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+  <!-- Navigation Bar -->
   <nav>
     <ul>
       <li><a href="index.html">Home</a></li>
+      <li><a href="games.html">Games</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <div class="container">
-    <h1 style="text-align:center;">🎮 Choose a Game</h1>
+  <!-- Games Page Header -->
+  <header class="hero">
+    <h1>Play My Games</h1>
+    <p>Fun. Simple. Addictive. 🎮</p>
+  </header>
 
+  <!-- Game Tiles Section -->
+  <section class="games">
     <div class="game-tiles">
       <a href="game/snake/snakeindex.html" class="game-tile">
         <img src="images/snake.jpg" alt="Snake Game">
-        <h2>🐍 Snake</h2>
+        <h3>Snake</h3>
       </a>
-
       <a href="game/breakout/breakoutindex.html" class="game-tile">
         <img src="images/breakout.jpg" alt="Breakout Game">
-        <h2>🧱 Breakout</h2>
+        <h3>Breakout</h3>
       </a>
-
       <a href="game/tictactoe/tictactoeindex.html" class="game-tile">
         <img src="images/tictactoe.jpg" alt="Tic Tac Toe Game">
-        <h2>⭕ Tic Tac Toe</h2>
+        <h3>Tic Tac Toe</h3>
       </a>
     </div>
-  </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Made by UMAR WAQAS | © 2025</p>
+    <div class="socials">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
 </body>
 </html>
