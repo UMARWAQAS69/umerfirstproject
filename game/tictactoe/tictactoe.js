@@ -1,7 +1,10 @@
 const board = document.getElementById("board");
+const gameOverScreen = document.getElementById("game-over-screen");
+const gameResultText = document.getElementById("game-result");
 
 let currentPlayer = "X";
 let cells = Array(9).fill("");
+let gameRunning = true;
 
 function renderBoard() {
   board.innerHTML = "";
@@ -15,13 +18,19 @@ function renderBoard() {
 }
 
 function handleClick(index) {
-  if (cells[index] !== "") return;
+  if (!gameRunning || cells[index] !== "") return;
+
   cells[index] = currentPlayer;
   if (checkWin()) {
-    alert(`${currentPlayer} wins!`);
-    resetBoard();
+    endGame(`${currentPlayer} wins!`);
     return;
   }
+
+  if (cells.every(cell => cell !== "")) {
+    endGame("It's a draw!");
+    return;
+  }
+
   currentPlayer = currentPlayer === "X" ? "O" : "X";
   renderBoard();
 }
@@ -37,10 +46,32 @@ function checkWin() {
   );
 }
 
-function resetBoard() {
+function endGame(message) {
+  gameRunning = false;
+  gameResultText.textContent = message;
+  gameOverScreen.classList.add("show");
+  gameOverScreen.style.display = "flex";
+}
+
+function restartGame() {
   cells = Array(9).fill("");
   currentPlayer = "X";
+  gameRunning = true;
+  gameOverScreen.classList.remove("show");
+  gameOverScreen.style.display = "none";
   renderBoard();
 }
+
+window.addEventListener("keydown", (e) => {
+  const key = e.key.toLowerCase();
+
+  if (!gameRunning && key === "enter") {
+    restartGame();
+  }
+
+  if (!gameRunning && key === "h") {
+    window.location.assign("../../index.html");
+  }
+});
 
 renderBoard();

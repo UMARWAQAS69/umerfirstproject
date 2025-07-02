@@ -14,8 +14,20 @@
       <li><a href="../../contact.html">Contact</a></li>
     </ul>
   </nav>
+
   <h1 style="text-align:center;">Tic Tac Toe</h1>
   <div class="board" id="board"></div>
+
+  <!-- 💀 Game Over Screen -->
+  <div id="game-over-screen">
+    <div class="game-over-box">
+      <h2 id="game-result">Game Over</h2>
+      <p>What would you like to do?</p>
+      <button onclick="restartGame()">🔁 Restart</button>
+      <button onclick="window.location.assign('../../index.html')">🏠 Go Home</button>
+    </div>
+  </div>
+
   <script src="tictactoe.js"></script>
 </body>
 </html>

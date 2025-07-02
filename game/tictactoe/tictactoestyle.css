@@ -1,49 +1,108 @@
+/* 🔹 Base Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    background: #333;
-    padding: 0;
-    margin: 0;
-  }
-  
-  nav li {
-    margin: 0;
-  }
-  
-  nav a {
-    display: block;
-    padding: 12px 16px;
-    color: white;
-    text-decoration: none;
-  }
-  
-  nav a:hover {
-    background: #555;
-  }
-  
-  .board {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 5px;
-    justify-content: center;
-    margin-top: 40px;
-  }
-  
-  .cell {
-    width: 100px;
-    height: 100px;
-    background: #fff;
-    border: 1px solid #000;
-    font-size: 48px;
-    text-align: center;
-    line-height: 100px;
-    cursor: pointer;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+/* 🔸 Navigation Bar */
+nav ul {
+  list-style: none;
+  display: flex;
+  background: #333;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  display: block;
+  padding: 12px 16px;
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background: #555;
+}
+
+/* 🟦 Game Board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: 1px solid #000;
+  font-size: 48px;
+  text-align: center;
+  line-height: 100px;
+  cursor: pointer;
+}
+
+/* 💀 Game Over Screen */
+#game-over-screen {
+  display: none !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-over-screen.show {
+  display: flex !important;
+}
+
+.game-over-box {
+  background: #222;
+  padding: 30px 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 20px #4CAF50;
+  color: white;
+  max-width: 300px;
+  width: 90%;
+}
+
+.game-over-box h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: red;
+}
+
+.game-over-box p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.game-over-box button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.game-over-box button:hover {
+  background: #45a049;
+}
