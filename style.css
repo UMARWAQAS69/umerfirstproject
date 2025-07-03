@@ -10,12 +10,20 @@ body {
   background-color: #ffffff;
   color: #333;
   transition: background-color 0.3s, color 0.3s;
+  /* 5. Custom Cursor - Default body cursor */
+  cursor: url('images/custom-cursor.png') 16 16, auto; /* Path to your custom cursor image, followed by x y coords for hotspot, and fallback */
 }
 
 body.dark-mode {
   background-color: #121212;
   color: #f0f0f0;
 }
+
+/* === Interactive Elements Cursor === */
+a, button, .game-tile, .project-card, .switch, .form-control {
+  cursor: url('images/custom-pointer.png') 10 2, pointer; /* A different cursor for interactive elements */
+}
+
 
 /* === Preloader === */
 #preloader {
@@ -53,22 +61,26 @@ body.dark-mode {
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0;
-  right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #ccc;
-  transition: 0.4s;
-  border-radius: 34px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 28px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 22px;
-  width: 22px;
+  height: 20px;
+  width: 20px;
   left: 4px;
-  bottom: 3px;
+  bottom: 4px;
   background-color: white;
-  transition: 0.4s;
+  -webkit-transition: .4s;
+  transition: .4s;
   border-radius: 50%;
 }
 
@@ -76,68 +88,198 @@ input:checked + .slider {
   background-color: #2196F3;
 }
 
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
 input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
   transform: translateX(24px);
 }
 
-/* === Navigation Bar === */
+/* === Navigation Bar (Sliding Effect) === */
 nav {
   background-color: #333;
   padding: 10px 0;
+  text-align: center;
+  display: flex; /* Use flex to align arrows and scroll container */
+  align-items: center; /* Vertically center items */
+  justify-content: center; /* Center the whole navigation block */
+  position: relative; /* For arrow positioning */
+  overflow: hidden; /* Hide anything that goes beyond the nav width */
+}
+
+.nav-scroll-container {
+  overflow-x: scroll; /* Enable horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling for programmatic scrolls */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  flex-grow: 1; /* Allows it to take up available space */
+  display: flex; /* Ensures ul fills container */
+  justify-content: center; /* Keep links centered if there's extra space */
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.nav-scroll-container::-webkit-scrollbar {
+  display: none;
 }
 
 nav ul {
-  display: flex;
-  justify-content: center;
   list-style: none;
-  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Make list items arrange horizontally */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  align-items: center; /* Vertically center nav items */
 }
 
-nav li {
-  margin: 0 15px;
+nav ul li {
+  flex-shrink: 0; /* Prevent items from shrinking */
+  padding: 0 15px; /* Spacing between items, consistent with original margin */
 }
 
-nav a {
-  text-decoration: none;
+nav ul li a {
   color: white;
-  font-weight: bold;
-  transition: color 0.3s;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 5px 0;
+  transition: color 0.3s, border-bottom 0.3s;
+  display: inline-block; /* Essential for padding to work correctly */
 }
 
-nav a:hover {
+nav ul li a:hover {
   color: #ffcc00;
 }
 
-/* === Hero Section === */
+/* === Navigation Bar - Active Link Highlight === */
+nav a.active {
+  color: #ffcc00;
+  border-bottom: 2px solid #ffcc00;
+  padding-bottom: 2px;
+}
+
+/* === Nav Arrows === */
+.nav-arrow {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 10;
+  transition: background-color 0.3s, opacity 0.3s;
+  line-height: 1; /* To vertically align arrow text */
+  height: 100%; /* Make them span the full height of the nav */
+  border-radius: 0; /* Remove default border-radius */
+  position: absolute; /* Position them absolutely within nav */
+  top: 0;
+}
+
+.nav-arrow.left {
+  left: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.nav-arrow.right {
+  right: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.nav-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.nav-arrow:active {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+body.dark-mode .nav-arrow {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+}
+
+body.dark-mode .nav-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+/* === Hero Section (1. Parallax Scrolling) === */
 .hero {
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 80px 20px;
   text-align: center;
-  padding: 100px 20px 60px;
+  transition: background-color 0.3s, color 0.3s;
+
+  background-image: url('images/hero-bg.jpg'); /* YOU NEED TO ADD THIS IMAGE */
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+body.dark-mode .hero {
+  background-color: #222;
+  color: #f0f0f0;
 }
 
 .hero h1 {
-  font-size: 2.8rem;
+  font-size: 3rem;
   margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  color: #777;
+  font-size: 1.5rem;
+  margin-top: 10px;
 }
 
 .typed-text {
-  color: #2196F3;
-  font-weight: bold;
+  font-weight: 600;
+  color: #007bff;
+}
+
+body.dark-mode .typed-text {
+  color: #92bdfa;
 }
 
 .cursor {
   display: inline-block;
+  background-color: #007bff;
+  width: 3px;
+  height: 1.6em;
+  margin-left: 5px;
   animation: blink 1s infinite;
+}
+
+body.dark-mode .cursor {
+  background-color: #92bdfa;
 }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
+
+/* === Animations on Scroll (2. Subtle Animations) === */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /* === About Section === */
 .about {
@@ -177,39 +319,212 @@ nav a:hover {
 }
 
 body.dark-mode .game-tile {
-  background-color: #1f1f1f;
+  background-color: #333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 
 .game-tile:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .game-tile:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.7);
 }
 
 .game-tile img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
+  height: 180px;
   object-fit: cover;
-  display: block;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .game-tile h3 {
-  padding: 16px 0 10px;
+  padding: 15px;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+body.dark-mode .game-tile h3 {
+  color: #f0f0f0;
+}
+
+/* === Projects Section === */
+.projects {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.projects h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.projects p {
   font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.project-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  padding: 25px;
+  text-align: left;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .project-card {
+  background-color: #333;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.25);
+}
+
+body.dark-mode .project-card:hover {
+  box-shadow: 0 10px 22px rgba(0,0,0,0.7);
+}
+
+.project-card h3 {
+  font-size: 1.8rem;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+body.dark-mode .project-card h3 {
+  color: #92bdfa;
+}
+
+.project-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 0;
+}
+
+body.dark-mode .project-card p {
+  color: #ccc;
+}
+
+
+/* === Contact Section === */
+.contact {
+  padding: 60px 20px;
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+}
+
+.contact h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.contact p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+body.dark-mode .contact p {
+  color: #ccc;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .contact form {
+  background-color: #333;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+.contact form input[type="text"],
+.contact form input[type="email"],
+.contact form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+body.dark-mode .contact form input[type="text"],
+body.dark-mode .contact form input[type="email"],
+body.dark-mode .contact form textarea {
+  background-color: #444;
+  border-color: #555;
+  color: #f0f0f0;
+}
+
+.contact form input[type="text"]:focus,
+.contact form input[type="email"]:focus,
+.contact form textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+body.dark-mode .contact form input[type="text"]:focus,
+body.dark-mode .contact form input[type="email"]:focus,
+body.dark-mode .contact form textarea:focus {
+  border-color: #92bdfa;
+  box-shadow: 0 0 0 3px rgba(146, 189, 250, 0.25);
+}
+
+.contact form button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+body.dark-mode .contact form button {
+  background-color: #92bdfa;
+  color: #121212;
+}
+
+.contact form button:hover {
+  background-color: #0056b3;
+}
+
+body.dark-mode .contact form button:hover {
+  background-color: #6a9ceb;
 }
 
 /* === Footer === */
 footer {
+  background-color: #333;
+  color: white;
   text-align: center;
-  padding: 20px 10px;
-  font-size: 0.9rem;
-  color: #666;
-  background: #f5f5f5;
-}
-
-body.dark-mode footer {
-  background: #1e1e1e;
-  color: #aaa;
+  padding: 20px;
+  margin-top: 50px;
 }
 
 footer .socials {
@@ -217,8 +532,62 @@ footer .socials {
 }
 
 footer .socials a {
+  color: white;
   margin: 0 10px;
-  color: #2196F3;
+  font-size: 1.5rem;
   text-decoration: none;
-  font-weight: bold;
+  transition: color 0.3s;
+}
+
+footer .socials a:hover {
+  color: #ffcc00;
+}
+
+/* === Scroll to Top Button (4. Styling) === */
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
+  z-index: 999;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  transform: translateY(10px);
+}
+
+#scrollToTopBtn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+#scrollToTopBtn[style*="display: block"] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.dark-mode #scrollToTopBtn {
+  background-color: #92bdfa;
+  color: #121212;
+}
+
+body.dark-mode #scrollToTopBtn:hover {
+  background-color: #6a9ceb;
+}
+
+/* Basic styling for form controls to inherit cursor */
+.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }

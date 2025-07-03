@@ -3,24 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact - Umar's Website</title>
+  <title>Contact - Waqas's Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="games.html">Games</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+  <div class="toggle-container">
+    <label class="switch">
+      <input type="checkbox" id="darkModeToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
 
-  <!-- Contact Section -->
-  <section class="contact">
+  <nav>
+    <button class="nav-arrow left" aria-label="Scroll left">&#10094;</button> <div class="nav-scroll-container">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <button class="nav-arrow right" aria-label="Scroll right">&#10095;</button> </nav>
+
+  <section class="contact fade-in-section">
     <h1>Contact Me 📬</h1>
     <p>Have a question or just want to connect? Let’s talk!</p>
 
@@ -32,7 +39,6 @@
     </form>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>Made with 💻 by Waqas | © 2025</p>
     <div class="socials">
@@ -42,6 +48,7 @@
     </div>
   </footer>
 
+  <script src="script.js"></script>
   <script>
     document.getElementById('contact-form').addEventListener('submit', function(e) {
       e.preventDefault();
