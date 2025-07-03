@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <div id="preloader"></div>
@@ -20,80 +21,136 @@
   </div>
 
   <nav>
-    <button class="nav-arrow left" aria-label="Scroll left">&#10094;</button> <div class="nav-scroll-container">
+    <button class="nav-arrow left" aria-label="Scroll left">&#10094;</button>
+    <div class="nav-scroll-container">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="games.html">Games</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#home" data-page="home">Home</a></li>
+        <li><a href="#games-page" data-page="games-page">Games</a></li>
+        <li><a href="#projects-page" data-page="projects-page">Projects</a></li>
+        <li><a href="#contact-page" data-page="contact-page">Contact</a></li>
       </ul>
     </div>
-    <button class="nav-arrow right" aria-label="Scroll right">&#10095;</button> </nav>
+    <button class="nav-arrow right" aria-label="Scroll right">&#10095;</button>
+  </nav>
 
-  <header class="hero">
-    <h1>WELCOME TO MY PORTFOLIO</h1>
-    <p><span class="typed-text"></span><span class="cursor">|</span></p>
-  </header>
+  <div id="full-page-slider-container">
 
-  <section class="about fade-in-section">
-    <h2>About Me</h2>
-    <p>
-      Hey, I’m <strong>Waqas</strong>, an O-Level student at Beaconhouse Garden Town Lahore 🇵🇰.<br>
-      I'm super curious, a bit of a deep-thinker, and I can’t learn anything unless I know the why and how behind it 💭.<br>
-      I'm currently building this awesome site to show off my games, design skills, and projects like Clear Skies 🌫🌱.
-    </p>
-  </section>
+    <section id="home" class="full-screen-page active-page">
+      <header class="hero">
+        <h1>WELCOME TO MY PORTFOLIO</h1>
+        <p><span class="typed-text"></span><span class="cursor">|</span></p>
+      </header>
 
-  <section class="games fade-in-section">
-    <h2>My Games</h2>
-    <div class="game-tiles">
-      <a href="game/snake/snakeindex.html" class="game-tile">
-        <img src="images/snake.jpg" alt="Snake Game">
-        <h3>Snake Game</h3>
-      </a>
-      <a href="game/breakout/breakoutindex.html" class="game-tile">
-        <img src="images/breakout.jpg" alt="Breakout Game">
-        <h3>Breakout</h3>
-      </a>
-      <a href="game/tictactoe/tictactoeindex.html" class="game-tile">
-        <img src="images/tictactoe.jpg" alt="Tic Tac Toe">
-        <h3>Tic Tac Toe</h3>
-      </a>
-    </div>
-  </section>
+      <section class="about">
+        <h2>About Me</h2>
+        <p>
+          Hey, I’m <strong>Waqas</strong>, an O-Level student at Beaconhouse Garden Town Lahore 🇵🇰.<br>
+          I'm super curious, a bit of a deep-thinker, and I can’t learn anything unless I know the why and how behind it 💭.<br>
+          I'm currently building this awesome site to show off my games, design skills, and projects like Clear Skies 🌫🌱.
+        </p>
+      </section>
 
-  <footer>
-    <p>&copy; 2025 Waqas. All rights reserved.</p>
-    <div class="socials">
-      <a href="#">Instagram</a>
-      <a href="#">GitHub</a>
-      <a href="#">LinkedIn</a>
-    </div>
-  </footer>
+      <footer>
+        <p>&copy; 2025 Waqas. All rights reserved. (Home Footer)</p>
+        <div class="socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </footer>
+    </section>
 
-  <script src="script.js"></script>
-  <script>
-    // Typing Animation (Keeping it inline as it was originally, but script.js also has it)
-    const texts = ["O-Level Student 📘", "Web Developer 👨‍💻", "Game Creator 🎮", "MUN Delegate 🌍"];
-    let count = 0, index = 0, currentText = '', letter = '';
+    <section id="games-page" class="full-screen-page">
+      <header class="hero">
+        <h1>Play My Games</h1>
+        <p>Fun. Simple. Addictive. 🎮</p>
+      </header>
 
-    function type() {
-      if (count === texts.length) count = 0;
-      currentText = texts[count];
-      letter = currentText.slice(0, ++index);
-      document.querySelector(".typed-text").textContent = letter;
+      <section class="games">
+        <div class="game-tiles">
+          <a href="game/snake/snakeindex.html" class="game-tile">
+            <img src="images/snake.jpg" alt="Snake Game">
+            <h3>Snake</h3>
+          </a>
+          <a href="game/breakout/breakoutindex.html" class="game-tile">
+            <img src="images/breakout.jpg" alt="Breakout Game">
+            <h3>Breakout</h3>
+          </a>
+          <a href="game/tictactoe/tictactoeindex.html" class="game-tile">
+            <img src="images/tictactoe.jpg" alt="Tic Tac Toe Game">
+            <h3>Tic Tac Toe</h3>
+          </a>
+        </div>
+      </section>
 
-      if (letter.length === currentText.length) {
-        setTimeout(() => {
-          index = 0;
-          count++;
-          setTimeout(type, 500);
-        }, 1500);
-      } else {
-        setTimeout(type, 100);
-      }
-    }
-    type();
-  </script>
+      <footer>
+        <p>Made by UMAR WAQAS | © 2025 (Games Footer)</p>
+        <div class="socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </footer>
+    </section>
+
+    <section id="projects-page" class="full-screen-page">
+      <header class="hero">
+        <h1>My Projects</h1>
+        <p>Take a look at some things I’ve worked on 🔥</p>
+      </header>
+
+      <section class="projects">
+        <div class="project-gallery">
+          <div class="project-card">
+            <h3>Clear Skies 🌫️</h3>
+            <p>An awareness campaign targeting Lahore's smog crisis, promoting tree plantations and eco-awareness for students age 10+.</p>
+          </div>
+          <div class="project-card">
+            <h3>EcoWrap ♻️</h3>
+            <p>A startup for eco-friendly packaging alternatives, replacing harmful plastic with sustainable materials.</p>
+          </div>
+          <div class="project-card">
+            <h3>Social Media Addiction Research 📱</h3>
+            <p>Global Perspectives report on teenage digital habits — causes, global impacts, and powerful solutions.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>Made with 💻 by Waqas | © 2025 (Projects Footer)</p>
+        <div class="socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </footer>
+    </section>
+
+    <section id="contact-page" class="full-screen-page">
+      <header class="hero">
+        <h1>Contact Me 📬</h1>
+        <p>Have a question or just want to connect? Let’s talk!</p>
+      </header>
+
+      <section class="contact">
+        <form id="contact-form">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
+
+      <footer>
+        <p>Made with 💻 by Waqas | © 2025 (Contact Footer)</p>
+        <div class="socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </footer>
+    </section>
+
+  </div> <script src="script.js"></script>
 </body>
 </html>
