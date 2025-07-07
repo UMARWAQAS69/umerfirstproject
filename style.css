@@ -33,11 +33,25 @@ body.dark-mode {
 
 /* === Dark Mode Toggle === */
 .toggle-container {
-  position: fixed;
+  position: fixed; /* Keep it fixed relative to viewport for consistent placement */
   top: 12px;
   right: 20px;
   z-index: 1100;
+  /* Adjustments for when it's inside #home */
+  position: absolute; /* Relative to its parent #home */
+  top: 20px; /* Adjust as needed within #home */
+  right: 20px; /* Adjust as needed within #home */
 }
+
+/* Override .toggle-container when it's inside a full-screen-page,
+   so its position becomes relative to that section and not fixed to viewport */
+.full-screen-page .toggle-container {
+  position: absolute;
+  top: 20px; /* Adjust top positioning within the section */
+  right: 20px; /* Adjust right positioning within the section */
+  z-index: 10; /* Ensure it's above other content in the section but below global nav/preloader */
+}
+
 
 .switch {
   position: relative;
@@ -210,6 +224,7 @@ body.dark-mode .nav-arrow {
   transition: opacity 0.5s ease-in-out;
   overflow-y: auto; /* Enable vertical scrolling within each page if content overflows */
   -webkit-overflow-scrolling: touch;
+  position: relative; /* For absolute positioning of toggle inside */
 }
 
 .full-screen-page.active-page {
@@ -479,7 +494,9 @@ body.dark-mode .contact textarea {
 }
 
 .contact input::placeholder,
-.contact textarea::placeholder {
+.dark-mode .contact input::placeholder, /* Ensure placeholder color changes in dark mode */
+.contact textarea::placeholder,
+.dark-mode .contact textarea::placeholder { /* Ensure placeholder color changes in dark mode */
   color: #aaa;
 }
 
@@ -599,10 +616,15 @@ footer .socials a:hover {
     font-size: 0.9rem;
   }
 
-  .toggle-container {
+  .toggle-container { /* Re-adjust for smaller screens if needed */
     top: 8px;
     right: 10px;
   }
+  .full-screen-page .toggle-container { /* Re-adjust for smaller screens if needed when inside page */
+    top: 15px;
+    right: 15px;
+  }
+
 
   .full-screen-page {
     padding: 15px;
@@ -624,3 +646,13 @@ footer .socials a:hover {
     font-size: 0.95rem;
   }
 }
+
+/* === Game-specific dark mode styles (add more as needed for your game canvases/elements) === */
+/* Example for a simple game page background */
+body.dark-mode.game-page-specific-class { /* You might add a class to your game bodies like <body class="game-page-specific-class"> */
+  background-color: #000; /* Even darker for games if desired */
+}
+
+/* If your games have specific elements, you might need to target them: */
+/* body.dark-mode .game-canvas-wrapper { background-color: #333; border-color: #666; } */
+/* body.dark-mode #score-display { color: #eee; } */
