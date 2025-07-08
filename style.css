@@ -129,7 +129,7 @@ body.dark-mode nav {
 .nav-scroll-container {
   overflow-x: auto; /* Enable horizontal scrolling for nav items */
   white-space: nowrap; /* Keep nav items in one line */
-  flex-grow: 1; /* Allow it to take available space */
+  /* flex-grow: 1; <--- THIS IS THE ONLY LINE I REMOVED */
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
@@ -656,3 +656,18 @@ body.dark-mode.game-page-specific-class { /* You might add a class to your game 
 /* If your games have specific elements, you might need to target them: */
 /* body.dark-mode .game-canvas-wrapper { background-color: #333; border-color: #666; } */
 /* body.dark-mode #score-display { color: #eee; } */
+
+
+/* === Contact Page Specific Layout === */
+.contact-page-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure it takes at least the full viewport height */
+  overflow-y: auto;   /* Allow vertical scrolling, overriding the global hidden */
+  overflow-x: hidden;
+}
+
+.contact-page-body .contact {
+  margin-top: auto; /* Push down from nav */
+  margin-bottom: auto; /* Push up from footer */
+}
