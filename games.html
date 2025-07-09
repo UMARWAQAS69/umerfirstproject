@@ -1,63 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Games - Waqas's Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Waqas's Games - Play Snake, Breakout, and Tic Tac Toe." />
+  <title>Games | Waqas's Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="preloader"></div>
   <div class="toggle-container">
     <label class="switch">
-      <input type="checkbox" id="darkModeToggle">
+      <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
       <span class="slider"></span>
     </label>
   </div>
 
   <nav>
-    <button class="nav-arrow left" aria-label="Scroll left">&#10094;</button> <div class="nav-scroll-container">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="games.html">Games</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <button class="nav-arrow right" aria-label="Scroll right">&#10095;</button> </nav>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#games-page" class="active">Games</a></li>
+      <li><a href="index.html#projects-page">Projects</a></li>
+      <li><a href="index.html#contact-page">Contact</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Toggle menu">☰</button>
+  </nav>
 
-  <header class="hero">
+  <header class="hero" style="background-image: url('images/games-hero.jpg');">
     <h1>Play My Games</h1>
     <p>Fun. Simple. Addictive. 🎮</p>
   </header>
 
-  <section class="games fade-in-section">
+  <section class="games">
     <div class="game-tiles">
-      <a href="game/snake/snakeindex.html" class="game-tile">
-        <img src="images/snake.jpg" alt="Snake Game">
-        <h3>Snake</h3>
+      <a href="game/snake/snakeindex.html" class="game-tile" style="--tile-index: 1;">
+        <div class="game-card">
+          <div class="card-front">
+            <img src="images/snake.jpg" alt="Snake Game" loading="lazy">
+            <h3>Snake</h3>
+          </div>
+          <div class="card-back">
+            <p>Classic snake game: eat food, grow longer, avoid collisions!</p>
+            <button class="play-now">Play Now</button>
+          </div>
+        </div>
       </a>
-      <a href="game/breakout/breakoutindex.html" class="game-tile">
-        <img src="images/breakout.jpg" alt="Breakout Game">
-        <h3>Breakout</h3>
+      <a href="game/breakout/breakoutindex.html" class="game-tile" style="--tile-index: 2;">
+        <div class="game-card">
+          <div class="card-front">
+            <img src="images/breakout.jpg" alt="Breakout Game" loading="lazy">
+            <h3>Breakout</h3>
+          </div>
+          <div class="card-back">
+            <p>Break bricks with a bouncing ball and paddle!</p>
+            <button class="play-now">Play Now</button>
+          </div>
+        </div>
       </a>
-      <a href="game/tictactoe/tictactoeindex.html" class="game-tile">
-        <img src="images/tictactoe.jpg" alt="Tic Tac Toe Game">
-        <h3>Tic Tac Toe</h3>
+      <a href="game/tictactoe/tictactoeindex.html" class="game-tile" style="--tile-index: 3;">
+        <div class="game-card">
+          <div class="card-front">
+            <img src="images/tictactoe.jpg" alt="Tic Tac Toe Game" loading="lazy">
+            <h3>Tic Tac Toe</h3>
+          </div>
+          <div class="card-back">
+            <p>Outsmart your opponent in this classic 3x3 grid game!</p>
+            <button class="play-now">Play Now</button>
+          </div>
+        </div>
       </a>
     </div>
   </section>
 
   <footer>
-    <p>Made by WAQAS | © 2025</p>
+    <p>Made by Waqas | © 2025</p>
     <div class="socials">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

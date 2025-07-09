@@ -3,39 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Play Breakout Game by Waqas, a classic brick-breaking arcade game." />
   <title>Breakout Game</title>
-
   <link rel="stylesheet" href="../../style.css">
-  
   <link rel="stylesheet" href="breakoutstyle.css">
-  
-  <style>
-    canvas {
-      background: #eee; /* Default light background */
-      border: 1px solid #000;
-      display: block;
-      margin: 20px auto;
-    }
-  </style>
 </head>
 <body>
-  <div id="preloader"></div> <div class="toggle-container">
+  <div id="preloader"></div>
+  <div class="toggle-container">
     <label class="switch">
-      <input type="checkbox" id="darkModeToggle">
+      <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
       <span class="slider"></span>
     </label>
   </div>
 
   <nav>
     <ul>
-      <li><a href="../../index.html">Home</a></li>
-      <li><a href="../../projects.html">Projects</a></li>
-      <li><a href="../../contact.html">Contact</a></li>
+      <li><a href="../../index.html#home">Home</a></li>
+      <li><a href="../../index.html#games-page">Games</a></li>
+      <li><a href="../../index.html#projects-page">Projects</a></li>
+      <li><a href="../../index.html#contact-page">Contact</a></li>
     </ul>
+    <button class="hamburger" aria-label="Toggle menu">☰</button>
   </nav>
 
-  <h1 style="text-align:center;">Breakout Game</h1>
-  <canvas id="myCanvas" width="480" height="320"></canvas>
+  <header class="hero" style="background-image: url('../../images/games-hero.jpg');">
+    <h1>Breakout Game</h1>
+    <p>Break bricks with a bouncing ball and paddle!</p>
+  </header>
+
+  <section class="game-container">
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+    <div class="controls">
+      <button onclick="restartGame()">Restart</button>
+      <button onclick="window.location.assign('../../index.html')">Home</button>
+    </div>
+  </section>
 
   <div id="game-over-screen">
     <div class="game-over-box">
@@ -47,7 +50,7 @@
   </div>
 
   <script src="breakout.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
   <script src="../../script.js"></script>
 </body>
 </html>

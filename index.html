@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Waqas's Portfolio - O-Level student showcasing web development, games, and eco-friendly projects." />
   <title>Waqas's Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <div id="preloader"></div>
 
   <nav>
-    <button class="nav-arrow left" aria-label="Scroll left">&#10094;</button>
+    <button class="nav-arrow left" aria-label="Scroll left">❮</button>
     <div class="nav-scroll-container">
       <ul>
-        <li><a href="#home" data-page="home">Home</a></li>
+        <li><a href="#home" data-page="home" class="active">Home</a></li>
         <li><a href="#games-page" data-page="games-page">Games</a></li>
         <li><a href="#projects-page" data-page="projects-page">Projects</a></li>
         <li><a href="#contact-page" data-page="contact-page">Contact</a></li>
       </ul>
     </div>
-    <button class="nav-arrow right" aria-label="Scroll right">&#10095;</button>
+    <button class="nav-arrow right" aria-label="Scroll right">❯</button>
+    <button class="hamburger" aria-label="Toggle menu">☰</button>
   </nav>
 
   <div id="full-page-slider-container">
-
     <section id="home" class="full-screen-page active-page">
+      <canvas id="particles-js" class="particle-bg"></canvas>
       <div class="toggle-container">
         <label class="switch">
-          <input type="checkbox" id="darkModeToggle">
+          <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
           <span class="slider"></span>
         </label>
       </div>
       
       <header class="hero">
+        <img src="images/profile.jpg" alt="Waqas" class="profile-photo">
         <h1>WELCOME TO MY PORTFOLIO</h1>
         <p><span class="typed-text"></span><span class="cursor">|</span></p>
       </header>
@@ -46,112 +49,154 @@
         <h2>About Me</h2>
         <p>
           Hey, I’m <strong>Waqas</strong>, an O-Level student at Beaconhouse Garden Town Lahore 🇵🇰.<br>
-          I'm super curious, a bit of a deep-thinker, and I can’t learn anything unless I know the why and how behind it 💭.<br>
-          I'm currently building this awesome site to show off my games, design skills, and projects like Clear Skies 🌫🌱.
+          I'm a curious web developer and game creator, passionate about solving problems with code and creativity.<br>
+          Explore my games and projects like Clear Skies 🌫🌱 to see what I’m all about!
         </p>
       </section>
 
       <footer>
-        <p>&copy; 2025 Waqas. All rights reserved. (Home Footer)</p>
+        <p>© 2025 Waqas. All rights reserved.</p>
         <div class="socials">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </footer>
     </section>
 
     <section id="games-page" class="full-screen-page">
-      <header class="hero">
+      <header class="hero" style="background-image: url('images/games-hero.jpg');">
         <h1>Play My Games</h1>
         <p>Fun. Simple. Addictive. 🎮</p>
       </header>
 
       <section class="games">
         <div class="game-tiles">
-          <a href="game/snake/snakeindex.html" class="game-tile">
-            <img src="images/snake.jpg" alt="Snake Game">
-            <h3>Snake</h3>
+          <a href="game/snake/snakeindex.html" class="game-tile" style="--tile-index: 1;">
+            <div class="game-card">
+              <div class="card-front">
+                <img src="images/snake.jpg" alt="Snake Game" loading="lazy">
+                <h3>Snake</h3>
+              </div>
+              <div class="card-back">
+                <p>Classic snake game: eat food, grow longer, avoid collisions!</p>
+                <button class="play-now">Play Now</button>
+              </div>
+            </div>
           </a>
-          <a href="game/breakout/breakoutindex.html" class="game-tile">
-            <img src="images/breakout.jpg" alt="Breakout Game">
-            <h3>Breakout</h3>
+          <a href="game/breakout/breakoutindex.html" class="game-tile" style="--tile-index: 2;">
+            <div class="game-card">
+              <div class="card-front">
+                <img src="images/breakout.jpg" alt="Breakout Game" loading="lazy">
+                <h3>Breakout</h3>
+              </div>
+              <div class="card-back">
+                <p>Break bricks with a bouncing ball and paddle!</p>
+                <button class="play-now">Play Now</button>
+              </div>
+            </div>
           </a>
-          <a href="game/tictactoe/tictactoeindex.html" class="game-tile">
-            <img src="images/tictactoe.jpg" alt="Tic Tac Toe Game">
-            <h3>Tic Tac Toe</h3>
+          <a href="game/tictactoe/tictactoeindex.html" class="game-tile" style="--tile-index: 3;">
+            <div class="game-card">
+              <div class="card-front">
+                <img src="images/tictactoe.jpg" alt="Tic Tac Toe Game" loading="lazy">
+                <h3>Tic Tac Toe</h3>
+              </div>
+              <div class="card-back">
+                <p>Outsmart your opponent in this classic 3x3 grid game!</p>
+                <button class="play-now">Play Now</button>
+              </div>
+            </div>
           </a>
         </div>
       </section>
 
       <footer>
-        <p>Made by UMAR WAQAS | © 2025 (Games Footer)</p>
+        <p>Made by Waqas | © 2025</p>
         <div class="socials">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </footer>
     </section>
 
     <section id="projects-page" class="full-screen-page">
-      <header class="hero">
+      <header class="hero" style="background-image: url('images/projects-hero.jpg');">
         <h1>My Projects</h1>
         <p>Take a look at some things I’ve worked on 🔥</p>
       </header>
 
       <section class="projects">
         <div class="project-gallery">
-          <div class="project-card">
+          <div class="project-card" style="--card-index: 1;">
+            <img src="images/clear-skies.jpg" alt="Clear Skies" loading="lazy">
             <h3>Clear Skies 🌫️</h3>
             <p>An awareness campaign targeting Lahore's smog crisis, promoting tree plantations and eco-awareness for students age 10+.</p>
+            <button class="learn-more" data-project="clear-skies">Learn More</button>
           </div>
-          <div class="project-card">
+          <div class="project-card" style="--card-index: 2;">
+            <img src="images/ecowrap.jpg" alt="EcoWrap" loading="lazy">
             <h3>EcoWrap ♻️</h3>
             <p>A startup for eco-friendly packaging alternatives, replacing harmful plastic with sustainable materials.</p>
+            <button class="learn-more" data-project="ecowrap">Learn More</button>
           </div>
-          <div class="project-card">
+          <div class="project-card" style="--card-index: 3;">
+            <img src="images/social-media.jpg" alt="Social Media Addiction" loading="lazy">
             <h3>Social Media Addiction Research 📱</h3>
             <p>Global Perspectives report on teenage digital habits — causes, global impacts, and powerful solutions.</p>
+            <button class="learn-more" data-project="social-media">Learn More</button>
           </div>
         </div>
       </section>
 
       <footer>
-        <p>Made with 💻 by Waqas | © 2025 (Projects Footer)</p>
+        <p>Made with 💻 by Waqas | © 2025</p>
         <div class="socials">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </footer>
     </section>
 
     <section id="contact-page" class="full-screen-page">
-      <header class="hero">
+      <header class="hero" style="background-image: url('images/contact-hero.jpg');">
         <h1>Contact Me 📬</h1>
         <p>Have a question or just want to connect? Let’s talk!</p>
       </header>
 
       <section class="contact">
         <form id="contact-form">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+          <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name" style="--input-index: 1;" />
+          <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email" style="--input-index: 2;" />
+          <textarea name="message" rows="5" placeholder="Your Message..." required aria-label="Your Message" style="--input-index: 3;"></textarea>
           <button type="submit">Send Message</button>
         </form>
       </section>
 
       <footer>
-        <p>Made with 💻 by Waqas | © 2025 (Contact Footer)</p>
+        <p>Made with 💻 by Waqas | © 2025</p>
         <div class="socials">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </footer>
     </section>
+  </div>
 
-  </div> <script src="script.js"></script>
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+      <img id="modal-image" src="" alt="Project Image">
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

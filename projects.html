@@ -1,63 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects - Waqas's Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Waqas's Projects - Eco-friendly initiatives and research." />
+  <title>Projects | Waqas's Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="preloader"></div>
   <div class="toggle-container">
     <label class="switch">
-      <input type="checkbox" id="darkModeToggle">
+      <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
       <span class="slider"></span>
     </label>
   </div>
 
   <nav>
-    <button class="nav-arrow left" aria-label="Scroll left">&#10094;</button> <div class="nav-scroll-container">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="games.html">Games</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <button class="nav-arrow right" aria-label="Scroll right">&#10095;</button> </nav>
+    <ul>
+      <li><a href="index.html#home">Home</a></li>
+      <li><a href="index.html#games-page">Games</a></li>
+      <li><a href="index.html#projects-page" class="active">Projects</a></li>
+      <li><a href="index.html#contact-page">Contact</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Toggle menu">☰</button>
+  </nav>
 
-  <header class="hero">
+  <header class="hero" style="background-image: url('images/projects-hero.jpg');">
     <h1>My Projects</h1>
-    <p>Take a look at some things I’ve worked on 🔥</p>
+    <p>Explore my eco-friendly initiatives and research 🔥</p>
   </header>
 
-  <section class="projects fade-in-section">
+  <section class="projects">
     <div class="project-gallery">
-      <div class="project-card">
+      <div class="project-card" style="--card-index: 1;">
+        <img src="images/clear-skies.jpg" alt="Clear Skies" loading="lazy">
         <h3>Clear Skies 🌫️</h3>
         <p>An awareness campaign targeting Lahore's smog crisis, promoting tree plantations and eco-awareness for students age 10+.</p>
+        <button class="learn-more" data-project="clear-skies">Learn More</button>
       </div>
-      <div class="project-card">
+      <div class="project-card" style="--card-index: 2;">
+        <img src="images/ecowrap.jpg" alt="EcoWrap" loading="lazy">
         <h3>EcoWrap ♻️</h3>
         <p>A startup for eco-friendly packaging alternatives, replacing harmful plastic with sustainable materials.</p>
+        <button class="learn-more" data-project="ecowrap">Learn More</button>
       </div>
-      <div class="project-card">
+      <div class="project-card" style="--card-index: 3;">
+        <img src="images/social-media.jpg" alt="Social Media Addiction" loading="lazy">
         <h3>Social Media Addiction Research 📱</h3>
         <p>Global Perspectives report on teenage digital habits — causes, global impacts, and powerful solutions.</p>
+        <button class="learn-more" data-project="social-media">Learn More</button>
       </div>
     </div>
   </section>
 
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">×</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+      <img id="modal-image" src="" alt="Project Image">
+    </div>
+  </div>
+
   <footer>
     <p>Made with 💻 by Waqas | © 2025</p>
     <div class="socials">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

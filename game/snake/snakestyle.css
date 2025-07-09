@@ -1,106 +1,126 @@
-/* 🔹 General styles */
+/* === Base Styles === */
 body {
-  font-family: 'Inter', Arial, sans-serif; /* Match style.css */
-  background-color: #1c2526; /* Charcoal for bright mode, matching style.css */
+  background-color: #F9F7F3;
+  color: #4A5568;
   margin: 0;
   padding: 0;
   text-align: center;
-  transition: background-color 0.3s, color 0.3s; /* Smooth dark mode transition */
+  transition: background-color 0.3s, color 0.3s;
 }
 
 body.dark-mode {
-  background-color: #12171a; /* Darker for dark mode */
-  color: #f0f0f0;
+  background-color: #2D3748;
+  color: #E2E8F0;
 }
 
-/* 🔹 Navigation Bar */
+/* === Hero === */
+.hero {
+  padding: 60px 20px;
+  background-color: rgba(255, 248, 232, 0.8);
+  backdrop-filter: blur(8px);
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out forwards;
+}
+
+body.dark-mode .hero {
+  background-color: rgba(74, 78, 105, 0.8);
+}
+
+.hero h1 {
+  font-family: 'Lora', Arial, sans-serif;
+  font-size: 2.5rem;
+  color: #4A5568;
+}
+
+body.dark-mode .hero h1 {
+  color: #E2E8F0;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #718096;
+}
+
+body.dark-mode .hero p {
+  color: #A0AEC0;
+}
+
+/* === Navigation === */
 nav {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  background-color: #2d3536 !important; /* Solid charcoal for bright mode */
-  padding: 10px 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: rgba(209, 226, 216, 0.8) !important;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 body.dark-mode nav {
-  background-color: #1f2527 !important; /* Solid dark for dark mode */
+  background-color: rgba(44, 75, 84, 0.8) !important;
 }
 
 nav ul {
-  list-style: none;
-  display: inline-flex;
-  padding: 0 15px;
-  margin: 0;
-  background-color: transparent; /* Ensure ul inherits nav background */
+  background-color: transparent;
 }
 
-nav ul li {
-  margin: 0 10px;
-  opacity: 0;
-  animation: fadeSlideIn 0.5s ease-in-out forwards;
-  animation-delay: calc(0.1s * var(--nav-item-index));
+/* === Game Container === */
+.game-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-nav ul li:nth-child(1) { --nav-item-index: 1; }
-nav ul li:nth-child(2) { --nav-item-index: 2; }
-nav ul li:nth-child(3) { --nav-item-index: 3; }
-
-nav ul li a {
-  display: block;
-  padding: 5px 0;
-  color: #d1d5db; /* Light gray for links */
-  font-weight: 500;
-  font-size: 1rem;
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-body.dark-mode nav ul li a {
-  color: #f0f0f0; /* Lighter text in dark mode */
-}
-
-nav ul li a:hover {
-  color: #e6e6e6; /* Brighter on hover */
-}
-
-nav ul li a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background-color: #d1d5db;
-  transition: none;
-}
-
-nav ul li a:hover::after,
-nav ul li a.active::after {
-  animation: underlineSlide 0.3s ease-in-out forwards;
-}
-
-/* 🟩 Canvas Styling */
 canvas {
-  border: 1px solid #000;
-  background-color: #f8f8f8; /* Light background for bright mode */
+  border: 1px solid #4A5568;
+  background-color: rgba(255, 248, 232, 0.8);
+  backdrop-filter: blur(4px);
   display: block;
-  margin: 30px auto;
+  margin: 20px auto;
+  max-width: 100%;
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out 0.2s forwards;
 }
 
 body.dark-mode canvas {
-  background-color: #2d3536; /* Charcoal for dark mode, matching theme */
-  border-color: #555;
+  background-color: rgba(74, 78, 105, 0.8);
+  border-color: #A0AEC0;
 }
 
-/* 💀 Game Over Screen Styles */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.controls button {
+  background-color: #FBB6B2;
+  color: #4A5568;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .controls button {
+  background-color: #FBD38D;
+  color: #2D3748;
+}
+
+.controls button:hover {
+  background-color: #A3BFFA;
+  transform: scale(1.05);
+}
+
+body.dark-mode .controls button:hover {
+  background-color: #90CDF4;
+}
+
+/* === Game Over Screen === */
 #game-over-screen {
-  display: none !important; /* Hidden by default */
+  display: none !important;
   position: fixed;
   top: 0;
   left: 0;
@@ -116,50 +136,52 @@ body.dark-mode canvas {
   display: flex !important;
 }
 
-/* 🧱 Game Over Box */
 .game-over-box {
-  background: #2d3536; /* Charcoal, matching style.css */
+  background: rgba(255, 248, 232, 0.8);
+  backdrop-filter: blur(8px);
   padding: 30px 40px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 0 20px rgba(108, 117, 125, 0.5); /* Subtle gray shadow */
-  color: #e6e6e6;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #4A5568;
   max-width: 300px;
-  width: 100%;
+  width: 90%;
+  opacity: 0;
+  animation: scaleIn 0.5s ease-in-out forwards;
 }
 
 body.dark-mode .game-over-box {
-  background: #1f2527; /* Darker for dark mode */
-  box-shadow: 0 0 20px rgba(176, 176, 176, 0.3);
+  background: rgba(74, 78, 105, 0.8);
+  color: #E2E8F0;
 }
 
 .game-over-box h2 {
+  font-family: 'Lora', Arial, sans-serif;
   font-size: 2rem;
   margin-bottom: 10px;
-  color: #d1d5db; /* Light gray, consistent with theme */
+  color: #4A5568;
 }
 
 body.dark-mode .game-over-box h2 {
-  color: #e6e6e6; /* Lighter in dark mode */
+  color: #E2E8F0;
 }
 
 .game-over-box p {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  color: #9ca3af; /* Gray text */
+  color: #718096;
 }
 
 body.dark-mode .game-over-box p {
-  color: #b0b0b0;
+  color: #A0AEC0;
 }
 
-/* 🟢 Buttons */
 .game-over-box button {
   margin: 10px;
   padding: 10px 20px;
   font-size: 1rem;
-  background: #6b7280; /* Gray button, matching style.css */
-  color: #1c2526;
+  background: #FBB6B2;
+  color: #4A5568;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -167,32 +189,22 @@ body.dark-mode .game-over-box p {
 }
 
 body.dark-mode .game-over-box button {
-  background: #6b7280; /* Consistent gray button */
-  color: #e6e6e6;
+  background: #FBD38D;
+  color: #2D3748;
 }
 
 .game-over-box button:hover {
-  background: #9ca3af; /* Lighter gray on hover */
-  transform: scale(1.05); /* Subtle scale animation */
+  background: #A3BFFA;
+  transform: scale(1.05);
 }
 
-/* 🔹 Animation Keyframes */
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+body.dark-mode .game-over-box button:hover {
+  background: #90CDF4;
 }
 
-@keyframes underlineSlide {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+/* === Media Queries === */
+@media (max-width: 480px) {
+  canvas { width: 100%; height: auto; max-width: 320px; }
+  .hero h1 { font-size: 2rem; }
+  .game-container { padding: 15px; }
 }

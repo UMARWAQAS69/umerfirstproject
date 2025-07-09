@@ -1,57 +1,154 @@
-/* 🔹 Base Styles */
+/* === Base Styles === */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #F9F7F3;
+  color: #4A5568;
   margin: 0;
   padding: 0;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* 🔸 Navigation Bar */
+body.dark-mode {
+  background-color: #2D3748;
+  color: #E2E8F0;
+}
+
+/* === Hero === */
+.hero {
+  padding: 60px 20px;
+  background-color: rgba(255, 248, 232, 0.8);
+  backdrop-filter: blur(8px);
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out forwards;
+}
+
+body.dark-mode .hero {
+  background-color: rgba(74, 78, 105, 0.8);
+}
+
+.hero h1 {
+  font-family: 'Lora', Arial, sans-serif;
+  font-size: 2.5rem;
+  color: #4A5568;
+}
+
+body.dark-mode .hero h1 {
+  color: #E2E8F0;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #718096;
+}
+
+body.dark-mode .hero p {
+  color: #A0AEC0;
+}
+
+/* === Navigation === */
+nav {
+  background-color: rgba(209, 226, 216, 0.8) !important;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode nav {
+  background-color: rgba(44, 75, 84, 0.8) !important;
+}
+
 nav ul {
-  list-style: none;
-  display: flex;
-  background: #333;
-  padding: 0;
-  margin: 0;
-  justify-content: center;
+  background-color: transparent;
 }
 
-nav li {
-  margin: 0;
+/* === Game Container === */
+.game-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-nav a {
-  display: block;
-  padding: 12px 16px;
-  color: white;
-  text-decoration: none;
-}
-
-nav a:hover {
-  background: #555;
-}
-
-/* 🟦 Game Board */
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-gap: 5px;
-  justify-content: center;
-  margin-top: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  width: 300px;
+  height: 300px;
+  margin: 20px auto;
+  background-color: rgba(255, 248, 232, 0.8);
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #4A5568;
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out 0.2s forwards;
+}
+
+body.dark-mode .board {
+  background-color: rgba(74, 78, 105, 0.8);
+  border-color: #A0AEC0;
 }
 
 .cell {
-  width: 100px;
-  height: 100px;
-  background: #fff;
-  border: 1px solid #000;
-  font-size: 48px;
-  text-align: center;
-  line-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #4A5568;
+  border: 1px solid #718096;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* 💀 Game Over Screen */
+body.dark-mode .cell {
+  color: #E2E8F0;
+  border-color: #A0AEC0;
+}
+
+.cell:hover {
+  background-color: rgba(163, 191, 250, 0.2);
+  transform: scale(1.05);
+}
+
+body.dark-mode .cell:hover {
+  background-color: rgba(144, 205, 244, 0.2);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.controls button {
+  background-color: #FBB6B2;
+  color: #4A5568;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .controls button {
+  background-color: #FBD38D;
+  color: #2D3748;
+}
+
+.controls button:hover {
+  background-color: #A3BFFA;
+  transform: scale(1.05);
+}
+
+body.dark-mode .controls button:hover {
+  background-color: #90CDF4;
+}
+
+/* === Game Over Screen === */
 #game-over-screen {
   display: none !important;
   position: fixed;
@@ -59,7 +156,7 @@ nav a:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 999;
   justify-content: center;
   align-items: center;
@@ -70,95 +167,75 @@ nav a:hover {
 }
 
 .game-over-box {
-  background: #222;
+  background: rgba(255, 248, 232, 0.8);
+  backdrop-filter: blur(8px);
   padding: 30px 40px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 0 20px #4CAF50;
-  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: #4A5568;
   max-width: 300px;
   width: 90%;
+  opacity: 0;
+  animation: scaleIn 0.5s ease-in-out forwards;
+}
+
+body.dark-mode .game-over-box {
+  background: rgba(74, 78, 105, 0.8);
+  color: #E2E8F0;
 }
 
 .game-over-box h2 {
+  font-family: 'Lora', Arial, sans-serif;
   font-size: 2rem;
   margin-bottom: 10px;
-  color: red;
+  color: #4A5568;
+}
+
+body.dark-mode .game-over-box h2 {
+  color: #E2E8F0;
 }
 
 .game-over-box p {
   font-size: 1.2rem;
   margin-bottom: 20px;
+  color: #718096;
+}
+
+body.dark-mode .game-over-box p {
+  color: #A0AEC0;
 }
 
 .game-over-box button {
   margin: 10px;
   padding: 10px 20px;
   font-size: 1rem;
-  background: #4CAF50;
-  color: white;
+  background: #FBB6B2;
+  color: #4A5568;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .game-over-box button {
+  background: #FBD38D;
+  color: #2D3748;
 }
 
 .game-over-box button:hover {
-  background: #45a049;
-}
-/* --- Dark Mode Overrides for Tic Tac Toe Game --- */
-
-/* Styles for the Tic Tac Toe board and its cells in dark mode */
-body.dark-mode .board {
-  background-color: #222; /* Dark background for the board */
-  border-color: #555; /* If board has a border */
+  background: #A3BFFA;
+  transform: scale(1.05);
 }
 
-/* Assuming your individual Tic Tac Toe cells are divs directly inside .board */
-body.dark-mode .board > div {
-  background-color: #444; /* Darker background for individual cells */
-  color: #f0f0f0; /* Light color for X/O marks */
-  border-color: #666; /* Border color for cells */
+body.dark-mode .game-over-box button:hover {
+  background: #90CDF4;
 }
 
-/* Example for hover/active states if your game has them */
-body.dark-mode .board > div:hover {
-  background-color: #555;
-}
-
-/* Styles for the Game Over modal in dark mode */
-body.dark-mode #game-over-screen .game-over-box {
-  background-color: #222; /* Dark background for the modal box */
-  color: #f0f0f0; /* Light text color */
-  border: 1px solid #444; /* Darker border */
-}
-
-body.dark-mode #game-over-screen .game-over-box h2 {
-  color: #2196F3; /* Consistent blue for headings */
-}
-
-body.dark-mode #game-over-screen .game-over-box button {
-  background-color: #1976D2; /* Example button color for dark mode */
-  color: white;
-}
-
-body.dark-mode #game-over-screen .game-over-box button:hover {
-  background-color: #1565C0; /* Darker hover for buttons */
-}
-/* --- Fix for Navigation Bar Visibility in Bright Mode (Tic Tac Toe) --- */
-
-/* Ensure the navigation bar itself is light in bright mode */
-body:not(.dark-mode) nav {
-  background-color: rgba(255, 255, 255, 0.9) !important; /* Light background */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important; /* Ensure shadow is visible */
-}
-
-/* Ensure navigation links are dark in bright mode */
-body:not(.dark-mode) nav ul li a {
-  color: #333 !important; /* Dark text color */
-}
-
-/* Ensure navigation arrows are dark in bright mode (if applicable on game pages) */
-body:not(.dark-mode) .nav-arrow {
-  color: #555 !important; /* Dark arrow color */
+/* === Media Queries === */
+@media (max-width: 480px) {
+  .board { width: 100%; height: auto; max-width: 320px; }
+  .cell { font-size: 2rem; }
+  .hero h1 { font-size: 2rem; }
+  .game-container { padding: 15px; }
 }

@@ -13,6 +13,10 @@ function renderBoard() {
     cellDiv.classList.add("cell");
     cellDiv.textContent = cell;
     cellDiv.addEventListener("click", () => handleClick(index));
+    cellDiv.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      handleClick(index);
+    }, { passive: false });
     board.appendChild(cellDiv);
   });
 }
@@ -59,19 +63,20 @@ function restartGame() {
   gameRunning = true;
   gameOverScreen.classList.remove("show");
   gameOverScreen.style.display = "none";
+  lottie.loadAnimation({
+    container: document.querySelector(".game-over-box"),
+    renderer: 'svg',
+    loop: false,
+    autoplay: true,
+    path: '../../images/success.json'
+  });
   renderBoard();
 }
 
 window.addEventListener("keydown", (e) => {
   const key = e.key.toLowerCase();
-
-  if (!gameRunning && key === "enter") {
-    restartGame();
-  }
-
-  if (!gameRunning && key === "h") {
-    window.location.assign("../../index.html");
-  }
+  if (!gameRunning && key === "enter") restartGame();
+  if (!gameRunning && key === "h") window.location.assign("../../index.html");
 });
 
 renderBoard();

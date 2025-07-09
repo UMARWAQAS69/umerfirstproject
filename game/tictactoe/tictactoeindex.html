@@ -3,30 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tic Tac Toe</title>
-
+  <meta name="description" content="Play Tic Tac Toe Game by Waqas, a classic strategy game." />
+  <title>Tic Tac Toe Game</title>
   <link rel="stylesheet" href="../../style.css">
-  
   <link rel="stylesheet" href="tictactoestyle.css">
 </head>
 <body>
-  <div id="preloader"></div> <div class="toggle-container">
+  <div id="preloader"></div>
+  <div class="toggle-container">
     <label class="switch">
-      <input type="checkbox" id="darkModeToggle">
+      <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
       <span class="slider"></span>
     </label>
   </div>
 
   <nav>
     <ul>
-      <li><a href="../../index.html">Home</a></li>
-      <li><a href="../../projects.html">Projects</a></li>
-      <li><a href="../../contact.html">Contact</a></li>
+      <li><a href="../../index.html#home">Home</a></li>
+      <li><a href="../../index.html#games-page">Games</a></li>
+      <li><a href="../../index.html#projects-page">Projects</a></li>
+      <li><a href="../../index.html#contact-page">Contact</a></li>
     </ul>
+    <button class="hamburger" aria-label="Toggle menu">☰</button>
   </nav>
 
-  <h1 style="text-align:center;">Tic Tac Toe</h1>
-  <div class="board" id="board"></div>
+  <header class="hero" style="background-image: url('../../images/games-hero.jpg');">
+    <h1>Tic Tac Toe</h1>
+    <p>Outsmart your opponent in this classic 3x3 grid game!</p>
+  </header>
+
+  <section class="game-container">
+    <div id="board" class="board"></div>
+    <div class="controls">
+      <button onclick="restartGame()">Restart</button>
+      <button onclick="window.location.assign('../../index.html')">Home</button>
+    </div>
+  </section>
 
   <div id="game-over-screen">
     <div class="game-over-box">
@@ -38,7 +50,7 @@
   </div>
 
   <script src="tictactoe.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
   <script src="../../script.js"></script>
 </body>
 </html>
