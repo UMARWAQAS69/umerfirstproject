@@ -1,11 +1,13 @@
 // === 1. Preloader ===
 window.addEventListener("load", function () {
-    const preloader = document.getElementById("preloader");
-    if (preloader) {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    preloader.classList.add("hide");
+    setTimeout(() => {
       preloader.style.display = "none";
-    }
+    }, 500); // Match CSS animation duration
+  }
 });
-
 // === 2. Dark Mode Toggle ===
 const toggle = document.getElementById("darkModeToggle");
 if (toggle) {

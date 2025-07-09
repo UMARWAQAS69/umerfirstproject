@@ -3,25 +3,82 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* Define Keyframes for Animations */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes underlineSlide {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes letterFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 html, body {
-  height: 100%; /* Ensure full height for layout */
-  overflow: hidden; /* Prevent body scroll, slider will handle it */
-  background-color: #ffffff;
-  color: #333;
+  height: 100%;
+  background-color: #1c2526;
+  color: #e6e6e6;
   transition: background-color 0.3s, color 0.3s;
 }
 
 body.dark-mode {
-  background-color: #121212;
+  background-color: #12171a;
   color: #f0f0f0;
+}
+
+body.game-page-specific-class {
+  background-color: #1c2526; /* Bright mode for game pages */
+}
+
+body.dark-mode.game-page-specific-class {
+  background-color: #12171a; /* Dark mode for game pages */
 }
 
 /* === Preloader === */
 #preloader {
-  background: #ffffff url('images/loader.gif') no-repeat center center;
+  background: #1c2526 url('images/loader.gif') no-repeat center center;
   background-size: 80px 80px;
   position: fixed;
   top: 0;
@@ -31,27 +88,24 @@ body.dark-mode {
   z-index: 1000;
 }
 
+#preloader.hide {
+  animation: fadeOut 0.5s ease-in-out forwards;
+}
+
 /* === Dark Mode Toggle === */
 .toggle-container {
-  position: fixed; /* Keep it fixed relative to viewport for consistent placement */
+  position: fixed;
   top: 12px;
   right: 20px;
   z-index: 1100;
-  /* Adjustments for when it's inside #home */
-  position: absolute; /* Relative to its parent #home */
-  top: 20px; /* Adjust as needed within #home */
-  right: 20px; /* Adjust as needed within #home */
 }
 
-/* Override .toggle-container when it's inside a full-screen-page,
-   so its position becomes relative to that section and not fixed to viewport */
 .full-screen-page .toggle-container {
   position: absolute;
-  top: 20px; /* Adjust top positioning within the section */
-  right: 20px; /* Adjust right positioning within the section */
-  z-index: 10; /* Ensure it's above other content in the section but below global nav/preloader */
+  top: 20px;
+  right: 20px;
+  z-index: 10;
 }
-
 
 .switch {
   position: relative;
@@ -73,9 +127,8 @@ body.dark-mode {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: #3a3f44;
+  transition: background-color 0.4s;
   border-radius: 28px;
 }
 
@@ -86,23 +139,16 @@ body.dark-mode {
   width: 20px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: #e6e6e6;
+  transition: transform 0.4s;
   border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  background-color: #6b7280;
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(24px);
-  -ms-transform: translateX(24px);
   transform: translateX(24px);
 }
 
@@ -111,50 +157,65 @@ nav {
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #2d3536 !important; /* Solid charcoal for bright mode */
   padding: 10px 0;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Hide scrollbar for nav-scroll-container if content overflows */
 }
 
 body.dark-mode nav {
-  background-color: rgba(30, 30, 30, 0.9);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  background-color: #1f2527 !important; /* Solid dark for dark mode */
+}
+
+/* Specific override for game pages */
+body.game-page-specific-class nav,
+body:not(.dark-mode) nav {
+  background-color: #2d3536 !important; /* Ensure bright mode nav color */
+}
+
+body.dark-mode.game-page-specific-class nav {
+  background-color: #1f2527 !important; /* Ensure dark mode nav color */
 }
 
 .nav-scroll-container {
-  overflow-x: auto; /* Enable horizontal scrolling for nav items */
-  white-space: nowrap; /* Keep nav items in one line */
-  /* flex-grow: 1; <--- THIS IS THE ONLY LINE I REMOVED */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .nav-scroll-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }
 
 nav ul {
   list-style: none;
-  display: inline-flex; /* Use inline-flex to keep all items on one line within the scroll container */
-  padding: 0 20px; /* Add some padding if arrows are present */
+  display: inline-flex;
+  padding: 0 15px;
 }
 
 nav ul li {
-  margin: 0 15px;
+  margin: 0 10px;
+  opacity: 0;
+  animation: fadeSlideIn 0.5s ease-in-out forwards;
+  animation-delay: calc(0.1s * var(--nav-item-index));
 }
+
+nav ul li:nth-child(1) { --nav-item-index: 1; }
+nav ul li:nth-child(2) { --nav-item-index: 2; }
+nav ul li:nth-child(3) { --nav-item-index: 3; }
+nav ul li:nth-child(4) { --nav-item-index: 4; }
 
 nav ul li a {
   text-decoration: none;
-  color: #333;
-  font-weight: 600;
-  font-size: 1.1rem;
+  color: #d1d5db;
+  font-weight: 500;
+  font-size: 1rem;
   padding: 5px 0;
-  transition: color 0.3s, border-bottom 0.3s;
+  transition: color 0.3s ease;
   position: relative;
 }
 
@@ -168,111 +229,116 @@ nav ul li a::after {
   left: 0;
   bottom: 0;
   width: 0;
-  height: 3px;
-  background-color: #2196F3;
-  transition: width 0.3s ease;
+  height: 2px;
+  background-color: #d1d5db;
+  transition: none;
 }
 
 nav ul li a:hover::after,
 nav ul li a.active::after {
-  width: 100%;
+  animation: underlineSlide 0.3s ease-in-out forwards;
+}
+
+nav ul li a:hover {
+  color: #e6e6e6;
 }
 
 .nav-arrow {
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #555;
+  color: #9ca3af;
   cursor: pointer;
   padding: 5px 10px;
-  transition: color 0.3s;
-  flex-shrink: 0; /* Prevent arrows from shrinking */
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 body.dark-mode .nav-arrow {
-  color: #ccc;
+  color: #b0b0b0;
 }
 
 .nav-arrow:hover {
-  color: #2196F3;
+  color: #d1d5db;
+  transform: scale(1.1);
 }
 
 /* === Full Page Slider Container === */
 #full-page-slider-container {
   display: flex;
   width: 100vw;
-  height: 100vh;
-  overflow-x: hidden; /* JavaScript will handle horizontal scrolling */
-  scroll-behavior: smooth; /* Smooth scroll between pages */
-  -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
-  padding-top: 60px; /* Space for fixed navigation bar */
+  height: calc(100vh - 60px);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+  top: 60px;
 }
 
 /* === Full Screen Pages === */
 .full-screen-page {
-  flex-shrink: 0; /* Prevent pages from shrinking */
-  width: 100vw; /* Each page takes full viewport width */
-  height: calc(100vh - 60px); /* Adjust height for fixed navigation bar */
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px; /* General padding for content */
-  box-sizing: border-box; /* Include padding in width/height calculation */
-  opacity: 0; /* Initially hidden */
-  transition: opacity 0.5s ease-in-out;
-  overflow-y: auto; /* Enable vertical scrolling within each page if content overflows */
-  -webkit-overflow-scrolling: touch;
-  position: relative; /* For absolute positioning of toggle inside */
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  background-color: #1c2526;
+  position: relative;
 }
 
 .full-screen-page.active-page {
-  opacity: 1; /* Show active page */
+  opacity: 1;
+  animation: fadeSlideIn 0.7s ease-in-out forwards;
 }
 
 /* === Hero Section (for all pages) === */
 .hero {
-  background-color: #f4f4f4; /* Light background for hero */
+  background-color: #2d3536;
   padding: 60px 20px;
   width: 100%;
   max-width: 100vw;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  margin-bottom: 20px; /* Space below hero */
-  flex-shrink: 0; /* Prevent hero from shrinking */
+  margin-bottom: 20px;
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out 0.2s forwards;
 }
 
 body.dark-mode .hero {
-  background-color: #1a1a1a; /* Dark background for hero */
+  background-color: #1f2527;
 }
 
 .hero h1 {
   font-size: 3rem;
   margin-bottom: 10px;
-  color: #2196F3;
+  color: #d1d5db;
 }
 
 .hero p {
   font-size: 1.2rem;
-  color: #555;
+  color: #9ca3af;
 }
 
 body.dark-mode .hero p {
-  color: #bbb;
+  color: #b0b0b0;
 }
 
 .typed-text {
   font-weight: 600;
-  color: #333;
+  color: #d1d5db;
+  display: inline-block;
 }
 
 body.dark-mode .typed-text {
-  color: #f0f0f0;
+  color: #e6e6e6;
 }
 
 .cursor {
   display: inline-block;
-  background-color: #333;
+  background-color: #9ca3af;
   width: 2px;
   height: 1.2em;
   margin-left: 5px;
@@ -280,7 +346,7 @@ body.dark-mode .typed-text {
 }
 
 body.dark-mode .cursor {
-  background-color: #f0f0f0;
+  background-color: #b0b0b0;
 }
 
 @keyframes blink {
@@ -292,39 +358,42 @@ body.dark-mode .cursor {
 .about {
   padding: 50px 20px;
   max-width: 800px;
-  margin: 0 auto 20px auto; /* Center and add space below */
+  margin: 0 auto 20px auto;
   text-align: center;
-  background-color: #fff;
+  background-color: #2d3536;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out 0.4s forwards;
 }
 
 body.dark-mode .about {
-  background-color: #222;
+  background-color: #1f2527;
 }
 
 .about h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #2196F3;
+  color: #d1d5db;
 }
 
 .about p {
   line-height: 1.6;
-  color: #666;
+  color: #9ca3af;
 }
 
 body.dark-mode .about p {
-  color: #ddd;
+  color: #b0b0b0;
 }
 
 /* === Games Section (Game Tiles) === */
 .games {
   padding: 40px 20px;
   text-align: center;
-  width: 100%; /* Ensure it spans full width of the page */
-  max-width: 1200px; /* Max width for content */
-  margin: 0 auto; /* Center content */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out 0.4s forwards;
 }
 
 .game-tiles {
@@ -336,53 +405,58 @@ body.dark-mode .about p {
 }
 
 .game-tile {
-  background-color: #fff;
+  background-color: #2d3536;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease;
   text-decoration: none;
   color: inherit;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 15px; /* Space for text below image */
+  padding-bottom: 15px;
+  opacity: 0;
+  animation: scaleIn 0.5s ease-in-out forwards;
+  animation-delay: calc(0.1s * var(--tile-index));
 }
 
+.game-tile:nth-child(1) { --tile-index: 1; }
+.game-tile:nth-child(2) { --tile-index: 2; }
+.game-tile:nth-child(3) { --tile-index: 3; }
+
 body.dark-mode .game-tile {
-  background-color: #222;
+  background-color: #1f2527;
 }
 
 .game-tile:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .game-tile img {
   width: 100%;
-  height: 180px; /* Fixed height for consistent image size */
-  object-fit: cover; /* Cover the area, crop if necessary */
-  border-bottom: 1px solid #eee;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(209, 213, 219, 0.2);
   margin-bottom: 10px;
 }
 
 body.dark-mode .game-tile img {
-  border-bottom-color: #333;
+  border-bottom-color: rgba(176, 176, 176, 0.2);
 }
 
 .game-tile h3 {
   font-size: 1.4rem;
-  color: #2196F3;
+  color: #d1d5db;
   margin-bottom: 5px;
 }
 
 .game-tile p {
   font-size: 0.9rem;
-  color: #777;
+  color: #9ca3af;
 }
 
 body.dark-mode .game-tile p {
-  color: #ccc;
+  color: #b0b0b0;
 }
 
 /* === Projects Section === */
@@ -392,6 +466,8 @@ body.dark-mode .game-tile p {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out 0.4s forwards;
 }
 
 .project-gallery {
@@ -403,37 +479,42 @@ body.dark-mode .game-tile p {
 }
 
 .project-card {
-  background-color: #fff;
+  background-color: #2d3536;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   padding: 25px;
   text-align: left;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease;
+  opacity: 0;
+  animation: scaleIn 0.5s ease-in-out forwards;
+  animation-delay: calc(0.1s * var(--card-index));
 }
 
+.project-card:nth-child(1) { --card-index: 1; }
+.project-card:nth-child(2) { --card-index: 2; }
+.project-card:nth-child(3) { --card-index: 3; }
+
 body.dark-mode .project-card {
-  background-color: #222;
+  background-color: #1f2527;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
 .project-card h3 {
   font-size: 1.6rem;
-  color: #2196F3;
+  color: #d1d5db;
   margin-bottom: 10px;
 }
 
 .project-card p {
   font-size: 1rem;
   line-height: 1.6;
-  color: #666;
+  color: #9ca3af;
 }
 
 body.dark-mode .project-card p {
-  color: #ddd;
+  color: #b0b0b0;
 }
 
 /* === Contact Section === */
@@ -443,29 +524,30 @@ body.dark-mode .project-card p {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: #2d3536;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out 0.4s forwards;
 }
 
 body.dark-mode .contact {
-  background-color: #222;
+  background-color: #1f2527;
 }
 
 .contact h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
-  color: #2196F3;
+  color: #d1d5db;
 }
 
 .contact p {
   font-size: 1.1rem;
   margin-bottom: 30px;
-  color: #555;
+  color: #9ca3af;
 }
 
 body.dark-mode .contact p {
-  color: #bbb;
+  color: #b0b0b0;
 }
 
 .contact form {
@@ -478,66 +560,75 @@ body.dark-mode .contact p {
 .contact input[type="email"],
 .contact textarea {
   padding: 15px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(209, 213, 219, 0.3);
   border-radius: 5px;
   font-size: 1rem;
   width: 100%;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #2d3536;
+  color: #e6e6e6;
+  opacity: 0;
+  animation: fadeSlideIn 0.5s ease-in-out forwards;
+  animation-delay: calc(0.1s * var(--input-index));
 }
+
+.contact input:nth-child(1) { --input-index: 1; }
+.contact input:nth-child(2) { --input-index: 2; }
+.contact textarea:nth-child(3) { --input-index: 3; }
 
 body.dark-mode .contact input,
 body.dark-mode .contact textarea {
-  background-color: #333;
-  border-color: #555;
+  background-color: #1f2527;
+  border-color: rgba(176, 176, 176, 0.3);
   color: #f0f0f0;
 }
 
 .contact input::placeholder,
-.dark-mode .contact input::placeholder, /* Ensure placeholder color changes in dark mode */
-.contact textarea::placeholder,
-.dark-mode .contact textarea::placeholder { /* Ensure placeholder color changes in dark mode */
-  color: #aaa;
+.contact textarea::placeholder {
+  color: #9ca3af;
 }
 
 body.dark-mode .contact input::placeholder,
 body.dark-mode .contact textarea::placeholder {
-  color: #888;
+  color: #b0b0b0;
 }
 
 .contact button {
-  background-color: #2196F3;
-  color: white;
+  background-color: #6b7280;
+  color: #1c2526;
   padding: 15px 25px;
   border: none;
   border-radius: 5px;
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  align-self: center; /* Center the button */
-  width: auto; /* Adjust width based on content */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  align-self: center;
+  width: auto;
   min-width: 150px;
+  opacity: 0;
+  animation: fadeSlideIn 0.5s ease-in-out 0.4s forwards;
 }
 
 .contact button:hover {
-  background-color: #1976D2;
+  background-color: #9ca3af;
+  transform: scale(1.05);
 }
 
 /* === Footer === */
 footer {
   width: 100%;
   padding: 20px;
-  background-color: #f4f4f4;
-  color: #555;
+  background-color: #2d3536;
+  color: #9ca3af;
   text-align: center;
   font-size: 0.9rem;
-  margin-top: auto; /* Pushes footer to the bottom of the flex column */
-  flex-shrink: 0; /* Prevent footer from shrinking */
+  margin-top: auto;
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeSlideIn 0.6s ease-in-out 0.6s forwards;
 }
 
 body.dark-mode footer {
-  background-color: #1a1a1a;
-  color: #bbb;
+  background-color: #1f2527;
 }
 
 footer .socials {
@@ -545,18 +636,19 @@ footer .socials {
 }
 
 footer .socials a {
-  color: #555;
+  color: #9ca3af;
   font-size: 1.5rem;
   margin: 0 10px;
-  transition: color 0.3s;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 body.dark-mode footer .socials a {
-  color: #bbb;
+  color: #b0b0b0;
 }
 
 footer .socials a:hover {
-  color: #2196F3;
+  color: #d1d5db;
+  transform: scale(1.1);
 }
 
 /* Media Queries for Responsiveness */
@@ -616,15 +708,15 @@ footer .socials a:hover {
     font-size: 0.9rem;
   }
 
-  .toggle-container { /* Re-adjust for smaller screens if needed */
+  .toggle-container {
     top: 8px;
     right: 10px;
   }
-  .full-screen-page .toggle-container { /* Re-adjust for smaller screens if needed when inside page */
+
+  .full-screen-page .toggle-container {
     top: 15px;
     right: 15px;
   }
-
 
   .full-screen-page {
     padding: 15px;
@@ -632,7 +724,7 @@ footer .socials a:hover {
 
   .game-tiles,
   .project-gallery {
-    grid-template-columns: 1fr; /* Stack on small screens */
+    grid-template-columns: 1fr;
   }
 
   .game-tile img {
@@ -645,29 +737,4 @@ footer .socials a:hover {
     padding: 12px;
     font-size: 0.95rem;
   }
-}
-
-/* === Game-specific dark mode styles (add more as needed for your game canvases/elements) === */
-/* Example for a simple game page background */
-body.dark-mode.game-page-specific-class { /* You might add a class to your game bodies like <body class="game-page-specific-class"> */
-  background-color: #000; /* Even darker for games if desired */
-}
-
-/* If your games have specific elements, you might need to target them: */
-/* body.dark-mode .game-canvas-wrapper { background-color: #333; border-color: #666; } */
-/* body.dark-mode #score-display { color: #eee; } */
-
-
-/* === Contact Page Specific Layout === */
-.contact-page-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensure it takes at least the full viewport height */
-  overflow-y: auto;   /* Allow vertical scrolling, overriding the global hidden */
-  overflow-x: hidden;
-}
-
-.contact-page-body .contact {
-  margin-top: auto; /* Push down from nav */
-  margin-bottom: auto; /* Push up from footer */
 }
